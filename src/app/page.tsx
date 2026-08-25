@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import Ah30LiteIoT from './components/Ah30LiteIoT';
 import Ah10LiteREPP from './components/Ah10LiteREPP';
+import Ah30ProLite from './components/Ah30ProLite';
 
-type Modelo = 'ah30' | 'ah10' | null;
+type Modelo = 'ah30' | 'ah10' | 'ah30prolite' | null;
 
 export default function Home() {
   const [modeloSelecionado, setModeloSelecionado] = useState<Modelo>(null);
@@ -46,6 +47,18 @@ export default function Home() {
                   Extrair: dev_version
                 </p>
               </button>
+
+              <button
+                onClick={() => setModeloSelecionado('ah30prolite')}
+                className="rounded-lg border-2 border-purple-500 bg-purple-50 p-6 text-left transition-all hover:bg-purple-100 dark:bg-purple-900/20 dark:hover:bg-purple-900/30"
+              >
+                <h2 className="mb-2 text-xl font-bold text-purple-700 dark:text-purple-300">
+                  Ah30 Pro Lite
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Extrair: dev_version
+                </p>
+              </button>
             </div>
           </div>
         </div>
@@ -58,7 +71,9 @@ export default function Home() {
     <div className="min-h-screen bg-zinc-50 dark:bg-black">
       <div className="mb-4 flex items-center justify-between border-b border-gray-300 bg-white p-4 dark:border-gray-700 dark:bg-zinc-900">
         <h1 className="text-xl font-bold text-black dark:text-zinc-50">
-          {modeloSelecionado === 'ah30' ? 'Ah30 Lite IoT' : 'Ah10 Lite REP-P'}
+          {modeloSelecionado === 'ah30' && 'Ah30 Lite IoT'}
+          {modeloSelecionado === 'ah10' && 'Ah10 Lite REP-P'}
+          {modeloSelecionado === 'ah30prolite' && 'Ah30 Pro Lite'}
         </h1>
         <button
           onClick={() => setModeloSelecionado(null)}
@@ -70,6 +85,7 @@ export default function Home() {
       
       {modeloSelecionado === 'ah30' && <Ah30LiteIoT />}
       {modeloSelecionado === 'ah10' && <Ah10LiteREPP />}
+      {modeloSelecionado === 'ah30prolite' && <Ah30ProLite />}
     </div>
   );
 }
